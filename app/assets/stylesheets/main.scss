@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Lobster+Two:400i|Open+Sans');
+@import 'partials/variables', 'partials/header', 'partials/footer', 'partials/form', 'partials/homepage', 'partials/goal', 'partials/task';
+
+html {
+  height: 100%;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding-bottom: 6rem;
+  min-height: 100%;
+  h1, h2, h3, h4,  {
+    color: $secondary_accent_color;
+  }
+  h5, h6, a {
+    color: $primary_accent_color;
+  }
+  .main-container {
+    padding-bottom: 5%;
+    min-height: 500px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    h1 {
+      font-family: $secondary_font;
+      font-weight: bold;
+      font-size: 5em;
+    }
+  }
+}
+
+.back-button {
+  display: -webkit-box;
+}
+
+.button a {
+  color: white;
+}
+
+.plant_image {
+  width: 200px;
+}
+
+//Error Styles
+.field_with_errors {
+  width: 100%;
+  text-align: left;
+  input, select {
+    border: 3px solid red;
+  }
+}
+
+div#error_explanation {
+  h2 {
+    text-transform: uppercase;
+    color: red;
+    font-size: 24px;
+  }
+  ul {
+    color: red;
+    list-style: none;
+  }
+}

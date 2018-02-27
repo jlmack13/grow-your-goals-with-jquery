@@ -1,0 +1,31 @@
+header {
+  background-color: white;
+  #main-logo {
+    margin: auto;
+    display: flex;
+  }
+  #main-menu {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      li {
+        margin: 0 20px;
+        font-family: $secondary_font;
+        font-weight: bold;
+        font-size: 24px;
+        a {
+          color: $primary_accent_color;
+          letter-spacing: 1px;
+          &:hover {
+            color: $secondary_accent_color;
+          }
+        }
+      }
+  }
+  @media (min-width: 768px) {
+      #main-menu {
+          float: none;
+      }
+  }
+}

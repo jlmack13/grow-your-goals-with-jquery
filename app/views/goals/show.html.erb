@@ -1,0 +1,82 @@
+<div class="back-button">
+  <p>&#8592;</p>
+  <%= link_to 'Back to Home', root_path%>
+</div>
+<div id="show-goal">
+
+<!-- INFO ROW -->
+  <div class="row goal-info">
+
+    <!-- LEFT SIDE -->
+    <div class="left-goal-box">
+      <h1 class="goal-name">Goal: <%= @goal.name %></h1>
+
+      <p class="goal-description"><%= @goal.description %></p>
+      <p class="goal-status" class="status status-<%= @goal.status %>"><%= @goal.status %></p>
+
+      <a href="#" class="js-previous btn-primary btn" data-id="<%=@goal.id%>" data-goals="<%= @goals %>">Previous Goal</a>
+      <a href="#" class="js-next btn-primary btn" data-id="<%=@goal.id%>" data-goals="<%= @goals %>">Next Goal</a>
+
+    </div>
+    <!-- END OF LEFT SIDE -->
+
+    <!-- RIGHT SIDE -->
+    <div class="right-goal-box">
+
+        <div class="goal-buttons">
+          <div class="btn btn-info button">
+            <%= link_to "Edit Goal", edit_goal_path(@goal) %>
+          </div>
+
+          <div class="btn btn-danger button">
+            <%= link_to "Delete Goal", goal_path(@goal), method: :delete %>
+          </div>
+        </div>
+      </div>
+    <!-- END OF RIGHT SIDE -->
+  </div>
+<!-- END OF INFO ROW-->
+
+  <hr>
+
+<!-- TASKS ROW -->
+  <h3>Tasks:</h3>
+  <div class="task-box">
+    <ul class="task-list">
+      <% @goal.tasks.each do |a| %>
+        <% if !a.name.empty? %>
+          <li><a href="/tasks/<%= a.id %>"><%= a.name%></a></li>
+        <% end %>
+      <% end %>
+    </ul>
+  </div>
+
+  <!-- END OF TASKS ROW -->
+  <div class="new-task-form">
+    <h3>Create a New Task</h3>
+    <%= render 'tasks/form' %>
+  </div>
+
+</div>
+<script type="text/javascript" charset="utf-8">
+  $(() => {
+    //CREATE NEW TASK FOR GOAL SHOW Page
+    $('form').submit(function(event) {
+      //prevent form from submitting the default way
+      event.preventDefault();
+      var values = $(this).serialize();
+      console.log(values)
+      var posting = $.post('/tasks', values);
+      posting.done(function(data) {
+        var task = new Task(data);
+        $(".task-list").append(task.format());
+        $( 'form' ).each(function(){
+          this.reset();
+        });
+        $(':submit').removeAttr('data-disable-with');
+        $(':submit').removeAttr('disabled');
+      });
+    });
+
+  });
+</script>

@@ -1,0 +1,7 @@
+<h1>Your Tasks</h1>
+
+<div class="task-box">
+  <% @tasks.each do |a| %>
+    <%= link_to a.name, task_path(a), :class => 'task' %>
+  <% end %>
+</div>
